@@ -7,6 +7,9 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var morgan          = require('morgan');
+var path            = require('path');
+var fs              = require('fs');
+var fsr             = require('file-stream-rotator');
 
 var mongoose        = require('mongoose');
 var port            = process.env.PORT || 3000;
@@ -20,7 +23,20 @@ var app             = express();
 // Connect to mongodb
 mongoose.connect(database);
 
-app.use(morgan('dev'));
+var logDirectory = path.join(__dirname, 'log')
+
+// ensure log directory exists
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
+
+// create a rotating write stream
+var accessLogStream = fsr.getStream({
+  date_format: 'YYYYMMDD',
+  filename: path.join(logDirectory, 'access-%DATE%.log'),
+  frequency: 'daily',
+  verbose: false
+})
+
+app.use(morgan('combined', {stream: accessLogStream}))
 
 app.use(bodyParser.urlencoded({
   extended: true

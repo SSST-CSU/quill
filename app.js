@@ -10,10 +10,12 @@ var morgan          = require('morgan');
 var path            = require('path');
 var fs              = require('fs');
 var fsr             = require('file-stream-rotator');
+var Sentry          = require('@sentry/node');
 
 var mongoose        = require('mongoose');
 var port            = process.env.PORT || 3000;
 var database        = process.env.DATABASE || process.env.MONGODB_URI || "mongodb://localhost:27017";
+var dsn             = process.env.DSN;
 
 var settingsConfig  = require('./config/settings');
 var adminConfig     = require('./config/admin');
@@ -22,6 +24,11 @@ var app             = express();
 
 // Connect to mongodb
 mongoose.connect(database);
+
+Sentry.init({ dsn });
+
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.errorHandler());
 
 var logDirectory = path.join(__dirname, 'log')
 

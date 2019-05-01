@@ -1,0 +1,8 @@
+.git
+node_modules
+*Dockerfile*
+*docker-compose*
+log
+db
+app/client/build
+semantic

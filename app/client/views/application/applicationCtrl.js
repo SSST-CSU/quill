@@ -17,7 +17,7 @@ angular.module('reg')
       $scope.user = currentUser.data;
 
       // Is the student from MIT?
-      $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
+      // $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
 
       // If so, default them to adult: true
       if ($scope.isMitStudent){
@@ -74,11 +74,11 @@ angular.module('reg')
         UserService
           .updateProfile(Session.getUserId(), $scope.user.profile)
           .then(response => {
-            swal("Awesome!", "Your application has been saved.", "success").then(value => {
+            swal("成功", "你的信息已提交。", "success").then(value => {
               $state.go("app.dashboard");
             });
           }, response => {
-            swal("Uh oh!", "Something went wrong.", "error");
+            swal("失败", "出现了错误。", "error");
           });
       }
 
@@ -92,17 +92,17 @@ angular.module('reg')
 
       function minorsValidation() {
         // Are minors allowed to register?
-        if (isMinor() && !minorsAreAllowed()) {
-          return false;
-        }
+        //  if (isMinor() && !minorsAreAllowed()) {
+        //  return false;
+        // }
         return true;
       }
 
       function _setupForm(){
         // Custom minors validation rule
-        $.fn.form.settings.rules.allowMinors = function (value) {
-          return minorsValidation();
-        };
+        // $.fn.form.settings.rules.allowMinors = function (value) {
+        //  return minorsValidation();
+        // };
 
         // Semantic-UI form validation
         $('.ui.form').form({
@@ -113,7 +113,7 @@ angular.module('reg')
               rules: [
                 {
                   type: 'empty',
-                  prompt: 'Please enter your name.'
+                  prompt: '请输入你的姓名。'
                 }
               ]
             },
@@ -122,11 +122,11 @@ angular.module('reg')
               rules: [
                 {
                   type: 'empty',
-                  prompt: 'Please enter your school name.'
+                  prompt: '请输入你的学院。'
                 }
               ]
             },
-            year: {
+            /*year: {
               identifier: 'year',
               rules: [
                 {
@@ -153,6 +153,7 @@ angular.module('reg')
                 }
               ]
             }
+            */
           }
         });
       }
@@ -161,7 +162,7 @@ angular.module('reg')
         if ($('.ui.form').form('is valid')){
           _updateUser();
         } else {
-          swal("Uh oh!", "Please Fill The Required Fields", "error");
+          swal("失败", "请填写所有的必填字段。", "error");
         }
       };
     }]);

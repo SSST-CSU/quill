@@ -6,10 +6,10 @@ angular.module('reg')
     })
     .constant('DASHBOARD', {
         UNVERIFIED: '你应该已经收到了一封验证邮件，请点击邮件里面的链接验证你的 Email。',
-        INCOMPLETE_TITLE: 'You still need to complete your application!',
-        INCOMPLETE: 'If you do not complete your application before the [APP_DEADLINE], you will not be considered for the admissions lottery!',
-        SUBMITTED_TITLE: 'Your application has been submitted!',
-        SUBMITTED: 'Feel free to edit it at any time. However, once registration is closed, you will not be able to edit it any further.\nAdmissions will be determined by a random lottery. Please make sure your information is accurate before registration is closed!',
+        INCOMPLETE_TITLE: '你的报名信息尚未完善。',
+        INCOMPLETE: '请在 [APP_DEADLINE] 之前完善你的报名信息，否则我们将不会计算你的成绩。',
+        SUBMITTED_TITLE: '报名信息已提交。',
+        SUBMITTED: '在报名截止之前你仍然可以修改你的报名信息，并请在截止前确认信息正确无误。',
         CLOSED_AND_INCOMPLETE_TITLE: 'Unfortunately, registration has closed, and the lottery process has begun.',
         CLOSED_AND_INCOMPLETE: 'Because you have not completed your profile in time, you will not be eligible for the lottery process.',
         ADMITTED_AND_CAN_CONFIRM_TITLE: 'You must confirm by [CONFIRM_DEADLINE].',
@@ -19,5 +19,5 @@ angular.module('reg')
         DECLINED: 'We\'re sorry to hear that you won\'t be able to make it to HackMIT 2015! :(\nMaybe next year! We hope you see you again soon.',
     })
     .constant('TEAM',{
-        NO_TEAM_REG_CLOSED: 'Unfortunately, it\'s too late to enter the lottery with a team.\nHowever, you can still form teams on your own before or during the event!',
+        NO_TEAM_REG_CLOSED: '在报名结束之后不能再添加队伍。',
     });

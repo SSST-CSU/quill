@@ -1,6 +1,6 @@
 <div id="application" class="page">
   <div class="divided title">
-    Application
+    报名
   </div>
 
   <div class="ui stackable page grid">
@@ -8,7 +8,7 @@
       <div class="ui form"
             ng-class="{'loading': loading}">
 
-        <div class="divided title">Basic Information</div>
+        <div class="divided title">基本信息</div>
 
         <fieldset ng-disabled="regIsClosed">
 
@@ -21,14 +21,14 @@
         </div>
 
         <div class="field">
-          <label> Full Name </label>
+          <label> 姓名 </label>
           <input type="text"
                  name="name"
                  ng-model="user.profile.name">
         </div>
 
         <div class="field" ng-show="autoFilledSchool">
-          <label> School </label>
+          <label>学院</label>
           <input class="ui input"
                  disabled="disabled"
                  ng-show="autoFilledSchool"
@@ -36,25 +36,27 @@
         </div>
 
         <div class="field" ng-show="!autoFilledSchool">
-          <label> School </label>
+          <label>学院</label>
           <div id="school" class="ui search">
             <div class="ui input">
-              <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">                
+              <input class="prompt" type="text" placeholder="学院" name="school" ng-model="user.profile.school">                
             </div>
             <div class="results"></div>
           </div>
         </div>
 
+        <!--
+
         <div class="field">
-          <label>Graduation Year</label>
+          <label>所在年级</label>
           <select
             name="year"
             ng-model="user.profile.graduationYear">
-            <option value="">Graduation Year</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
+            <option value="">所在年级</option>
+            <option value="2015">大四</option>
+            <option value="2016">大三</option>
+            <option value="2017">大二</option>
+            <option value="2018">大一</option>
           </select>
         </div>
 
@@ -85,7 +87,7 @@
           <textarea ng-model="user.profile.essay">
           </textarea>
         </div>
-
+        
         <div class="field"
              ng-hide="isMitStudent">
           <p>
@@ -102,14 +104,14 @@
             <label for="adult">I am 18 or older.</label>
           </div>
         </div>
-
+        -->
         <br>
 
         <div class="field" ng-hide="regIsClosed">
           <button type="submit"
                   class="fluid ui purple button"
                   ng-click="submitForm()">
-            Submit
+            提交
           </button>
         </div>
 

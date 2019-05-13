@@ -13,11 +13,11 @@ var profile = {
     max: 100,
   },
 
-  adult: {
+  /*adult: {
     type: Boolean,
     required: true,
     default: false,
-  },
+  },*/
 
   school: {
     type: String,
@@ -25,7 +25,7 @@ var profile = {
     max: 150,
   },
 
-  graduationYear: {
+  /*graduationYear: {
     type: String,
     enum: {
       values: '2016 2017 2018 2019'.split(' '),
@@ -51,6 +51,7 @@ var profile = {
       values: 'M F O N'.split(' ')
     }
   },
+  */
 
 };
 
@@ -331,10 +332,10 @@ schema.statics.getByToken = function(token, callback){
 schema.statics.validateProfile = function(profile, cb){
   return cb(!(
     profile.name.length > 0 &&
-    profile.adult &&
-    profile.school.length > 0 &&
-    ['2016', '2017', '2018', '2019'].indexOf(profile.graduationYear) > -1 &&
-    ['M', 'F', 'O', 'N'].indexOf(profile.gender) > -1
+    // profile.adult &&
+    profile.school.length > 0 // &&
+    // ['2016', '2017', '2018', '2019'].indexOf(profile.graduationYear) > -1 &&
+    // ['M', 'F', 'O', 'N'].indexOf(profile.gender) > -1
     ));
 };
 

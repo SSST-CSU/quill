@@ -9,50 +9,90 @@ var profile = {
   // Basic info
   name: {
     type: String,
+    required: true,
     min: 1,
     max: 100,
   },
 
-  /*adult: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },*/
-
-  school: {
-    type: String,
-    min: 1,
-    max: 150,
-  },
-
-  /*graduationYear: {
-    type: String,
-    enum: {
-      values: '2016 2017 2018 2019'.split(' '),
-    }
-  },
-
-  description: {
-    type: String,
-    min: 0,
-    max: 300
-  },
-
-  essay: {
-    type: String,
-    min: 0,
-    max: 1500
-  },
-
-  // Optional info for demographics
   gender: {
     type: String,
     enum : {
       values: 'M F O N'.split(' ')
     }
   },
-  */
 
+  school: {
+    type: String,
+    required: true,
+    min: 1,
+    max: 150,
+  },
+
+  class: {
+    type: String,
+    required: true,
+    min: 1,
+    max: 50
+  },
+
+  student: {
+    type: String,
+    required: true,
+    min: 1,
+    max: 15
+  },
+
+  qq: {
+    type: String,
+    required: true,
+    min: 5,
+    max: 15
+  },
+
+  phone: {
+    type: String,
+    required: true,
+    min: 13,
+    max: 13
+  },
+
+  course: {
+    type: String
+  },
+
+  leader: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+
+  botzone: {
+    type: String
+  },
+
+  haveTeacher: {
+    type: Boolean
+  },
+
+  teacherName: {
+    type: String,
+    min: 1,
+    max: 50
+  },
+
+  teacherMajor: {
+    type: String
+  },
+
+  teacherEmail: {
+    type: String
+  },
+
+  teacherPhone: {
+    type: String,
+    min: 13,
+    max: 13
+  }
 };
 
 // Only after confirmed

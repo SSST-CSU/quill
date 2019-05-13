@@ -4,11 +4,10 @@ ADD . /app/
 WORKDIR /app
 
 RUN npm config set registry http://mirrors.tencentyun.com/npm/ \ 
-    && npm install
+    && npm install \
+    && cp ./wait /wait \
+    && chmod +x /wait 
 
 EXPOSE 3000
-
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.4.0/wait /wait
-RUN chmod +x /wait 
 
 CMD /wait && npm run prod

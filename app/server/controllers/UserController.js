@@ -26,7 +26,7 @@ function endsWith(s, test){
 function canRegister(email, password, callback){
 
   if (!password || password.length < 6){
-    return callback({ message: "Password must be 6 or more characters."}, false);
+    return callback({ message: "密码必须不少于 6 个字符。"}, false);
   }
 
   // Check if its within the registration window.
@@ -39,13 +39,13 @@ function canRegister(email, password, callback){
 
     if (now < times.timeOpen){
       return callback({
-        message: "Registration opens in " + moment(times.timeOpen).fromNow() + "!"
+        message: "报名将在 " + moment(times.timeOpen).fromNow() + "后开始。"
       });
     }
 
     if (now > times.timeClose){
       return callback({
-        message: "Sorry, registration is closed."
+        message: "报名已关闭。"
       });
     }
 
@@ -54,6 +54,8 @@ function canRegister(email, password, callback){
       if (err || !emails){
         return callback(err);
       }
+      return callback(null, true);
+      /*
       for (var i = 0; i < emails.length; i++) {
         if (validator.isEmail(email) && endsWith(emails[i], email)){
           return callback(null, true);
@@ -62,6 +64,7 @@ function canRegister(email, password, callback){
       return callback({
         message: "Not a valid educational email."
       }, false);
+      */
     });
 
   });
@@ -88,13 +91,13 @@ UserController.loginWithPassword = function(email, password, callback){
 
   if (!password || password.length === 0){
     return callback({
-      message: 'Please enter a password'
+      message: '请输入密码。'
     });
   }
 
   if (!validator.isEmail(email)){
     return callback({
-      message: 'Invalid email'
+      message: '不是有效的 Email。'
     });
   }
 
@@ -107,12 +110,12 @@ UserController.loginWithPassword = function(email, password, callback){
       }
       if (!user) {
         return callback({
-          message: "We couldn't find you!"
+          message: "Email 或密码错误。"
         });
       }
       if (!user.checkPassword(password)) {
         return callback({
-          message: "That's not the right password."
+          message: "Email 或密码错误。"
         });
       }
 
@@ -137,7 +140,7 @@ UserController.createUser = function(email, password, callback) {
 
   if (typeof email !== "string"){
     return callback({
-      message: "Email must be a string."
+      message: "Email 不能为空。"
     });
   }
 
@@ -158,7 +161,7 @@ UserController.createUser = function(email, password, callback) {
         // Duplicate key error codes
         if (err.name === 'MongoError' && (err.code === 11000 || err.code === 11001)) {
           return callback({
-            message: 'An account for this email already exists.'
+            message: '这个邮箱已经被注册过了。'
           });
         }
 
@@ -291,7 +294,7 @@ UserController.updateProfileById = function (id, profile, callback){
 
       if (now > times.timeClose){
         return callback({
-          message: "Sorry, registration is closed."
+          message: "注册已关闭。"
         });
       }
     });
@@ -334,7 +337,7 @@ UserController.updateConfirmationById = function (id, confirmation, callback){
     // that's okay.
     if (Date.now() >= user.status.confirmBy && !user.status.confirmed){
       return callback({
-        message: "You've missed the confirmation deadline."
+        message: "确认截止时间已过。"
       });
     }
 
@@ -421,7 +424,7 @@ UserController.getTeammates = function(id, callback){
 
     if (!code){
       return callback({
-        message: "You're not on a team."
+        message: "你不在一个团队里。"
       });
     }
 
@@ -444,7 +447,7 @@ UserController.createOrJoinTeam = function(id, code, callback){
 
   if (!code){
     return callback({
-      message: "Please enter a team name."
+      message: "请输入队名。"
     });
   }
 
@@ -462,7 +465,7 @@ UserController.createOrJoinTeam = function(id, code, callback){
     // Check to see if this team is joinable (< team max size)
     if (users.length >= maxTeamSize){
       return callback({
-        message: "Team is full."
+        message: "队伍已满。"
       });
     }
 
@@ -550,7 +553,7 @@ UserController.sendPasswordResetEmail = function(email, callback){
 UserController.changePassword = function(id, oldPassword, newPassword, callback){
   if (!id || !oldPassword || !newPassword){
     return callback({
-      message: 'Bad arguments.'
+      message: '参数错误。'
     });
   }
 
@@ -571,7 +574,7 @@ UserController.changePassword = function(id, oldPassword, newPassword, callback)
         callback);
       } else {
         return callback({
-          message: 'Incorrect password'
+          message: '密码不正确。'
         });
       }
     });
@@ -586,13 +589,13 @@ UserController.changePassword = function(id, oldPassword, newPassword, callback)
 UserController.resetPassword = function(token, password, callback){
   if (!password || !token){
     return callback({
-      message: 'Bad arguments'
+      message: '参数错误。'
     });
   }
 
   if (password.length < 6){
     return callback({
-      message: 'Password must be 6 or more characters.'
+      message: '密码必须不短于 6 个字符。'
     });
   }
 
@@ -616,7 +619,7 @@ UserController.resetPassword = function(token, password, callback){
 
         Mailer.sendPasswordChangedEmail(user.email);
         return callback(null, {
-          message: 'Password successfully reset!'
+          message: '密码已重置。'
         });
       });
   });

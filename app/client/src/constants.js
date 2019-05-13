@@ -2,10 +2,10 @@ const angular = require('angular');
 
 angular.module('reg')
     .constant('EVENT_INFO', {
-        NAME: 'HackMIT 2015',
+        NAME: '中南大学计算机学院第一届极客对抗邀请赛',
     })
     .constant('DASHBOARD', {
-        UNVERIFIED: 'You should have received an email asking you verify your email. Click the link in the email and you can start your application!',
+        UNVERIFIED: '你应该已经收到了一封验证邮件，请点击邮件里面的链接验证你的 Email。',
         INCOMPLETE_TITLE: 'You still need to complete your application!',
         INCOMPLETE: 'If you do not complete your application before the [APP_DEADLINE], you will not be considered for the admissions lottery!',
         SUBMITTED_TITLE: 'Your application has been submitted!',

@@ -4,7 +4,7 @@
       <div class="ui segment">
 
         <div class="logo">
-          <img src="assets/images/logo-color.svg">
+          <img src="assets/images/logo.png">
         </div>
 
         <div class="ui divider"></div>
@@ -17,24 +17,24 @@
         <div class="ui login-password form">
           <form ng-submit="changePassword()">
             <div class="field">
-              <label> New Password</label>
+              <label>新密码</label>
               <input type="password"
                      id='password'
-                     placeholder="Password (at least 6 characters)"
+                     placeholder="密码（至少 6 个字符）"
                      ng-model="password" required>
             </div>
             <div class="field">
-              <label> Confirm Password</label>
+              <label>重复新密码</label>
               <input type="password"
                      id='confirm'
-                     placeholder="Just making sure you got it!"
+                     placeholder="请重复输入新密码"
                      ng-model="confirm" required>
             </div>
             <div class="field">
               <button id="reset-password"
                       type="submit"
                       class="fluid ui login button">
-                      Reset Password
+                      提交
               </button>
             </div>
 

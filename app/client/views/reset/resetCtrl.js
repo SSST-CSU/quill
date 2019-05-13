@@ -25,7 +25,7 @@ angular.module('reg')
           token,
           $scope.password,
           message => {
-            swal("Neato!", "Your password has been changed!", "success").then(value => {
+            swal("成功", "你的密码已重置。", "success").then(value => {
               $state.go("login");
             });
           },

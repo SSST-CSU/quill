@@ -126,16 +126,16 @@ controller.sendPasswordResetEmail = function(email, token, callback) {
 
   var options = {
     to: email,
-    subject: "["+HACKATHON_NAME+"] - Password reset requested!"
+    subject: "["+HACKATHON_NAME+"] - 重置密码"
   };
 
   var locals = {
-    title: 'Password Reset Request',
+    title: '重置密码',
     subtitle: '',
-    description: 'Somebody (hopefully you!) has requested that your password be reset. If ' +
-      'this was not you, feel free to disregard this email. This link will expire in one hour.',
+    description: '你收到这封邮件，是因为这个邮箱地址被登记为已注册邮箱，并刚刚申请了密码重置。' +
+      '如果这不是你本人操作，请忽略该邮件。链接将会在一个小时之后失效，请尽快处理。如有任何疑问请与组委会联系。',
     actionUrl: ROOT_URL + '/reset/' + token,
-    actionName: "Reset Password"
+    actionName: "重置密码"
   };
 
   /**
@@ -167,12 +167,12 @@ controller.sendPasswordChangedEmail = function(email, callback){
 
   var options = {
     to: email,
-    subject: "["+HACKATHON_NAME+"] - Your password has been changed!"
+    subject: "["+HACKATHON_NAME+"] - 密码修改"
   };
 
   var locals = {
-    title: 'Password Updated',
-    body: 'Somebody (hopefully you!) has successfully changed your password.',
+    title: '密码修改',
+    body: '你的密码已被修改，请确认是否为本人操作。如有任何疑问请与组委会联系。',
   };
 
   /**

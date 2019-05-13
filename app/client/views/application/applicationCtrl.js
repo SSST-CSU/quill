@@ -74,7 +74,7 @@ angular.module('reg')
         UserService
           .updateProfile(Session.getUserId(), $scope.user.profile)
           .then(response => {
-            swal("成功", "你的信息已提交。", "success").then(value => {
+            swal("成功", "报名表已提交。", "success").then(value => {
               $state.go("app.dashboard");
             });
           }, response => {

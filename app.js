@@ -28,7 +28,6 @@ mongoose.connect(database);
 Sentry.init({ dsn });
 
 app.use(Sentry.Handlers.requestHandler());
-app.use(Sentry.Handlers.errorHandler());
 
 var logDirectory = path.join(__dirname, 'log')
 
@@ -65,6 +64,8 @@ require('./app/server/routes/auth')(authRouter);
 app.use('/auth', authRouter);
 
 require('./app/server/routes')(app);
+
+app.use(Sentry.Handlers.errorHandler());
 
 // listen (start app with node server.js) ======================================
 app.listen(port);

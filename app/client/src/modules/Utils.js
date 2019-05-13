@@ -19,7 +19,7 @@ angular.module('reg')
 
           date = new Date(time);
           // Hack for timezone
-          return moment(date).format('dddd, MMMM Do YYYY, h:mm a') +
+          return moment(date).format('yyyy-MM-dd HH:mm:ss') +
             " " + date.toTimeString().split(' ')[2];
 
         }

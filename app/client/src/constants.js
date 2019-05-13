@@ -7,7 +7,7 @@ angular.module('reg')
     .constant('DASHBOARD', {
         UNVERIFIED: '你应该已经收到了一封验证邮件，请点击邮件里面的链接验证你的 Email。',
         INCOMPLETE_TITLE: '你的报名表尚未提交。',
-        INCOMPLETE: '请在 [APP_DEADLINE] 之前提交你的报名表，否则我们将不会计算你的成绩。',
+        INCOMPLETE: '请在报名截止之前提交你的报名表，否则我们将不会计算你的成绩。',
         SUBMITTED_TITLE: '报名表已提交。',
         SUBMITTED: '在报名截止之前你仍然可以修改你的报名表，并请在截止前确认信息正确无误。',
         CLOSED_AND_INCOMPLETE_TITLE: '报名已经结束。',

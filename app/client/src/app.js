@@ -3,8 +3,18 @@ const $ = require('jquery');
 var angular = require('angular');
 var uiRouter = require('angular-ui-router');
 
+var Sentry = require('@sentry/browser');
+var Integrations = require('@sentry/integrations');
+
+Sentry.init({
+  dsn: '', // needs configuration
+  integrations: [
+    new Integrations.Angular(),
+  ],
+});
+
 var app = angular.module('reg', [
-  'ui.router',
+  'ui.router','ngSentry'
 ]);
 
 const constants = require('./constants.js');

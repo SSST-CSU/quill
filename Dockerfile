@@ -3,8 +3,7 @@ FROM node:10.15.3
 ADD . /app/
 WORKDIR /app
 
-RUN npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ \
-    && npm config set registry http://mirrors.tencentyun.com/npm/ \ 
+RUN npm config set registry http://mirrors.tencentyun.com/npm/ \ 
     && npm install
 
 EXPOSE 3000

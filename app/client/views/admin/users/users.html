@@ -97,6 +97,7 @@
             <th>Class</th>
             <th>V/S</th>
             <th>Leader</th>
+            <th>Team</th>
             <th>$</th>
           </tr>
         </thead>
@@ -142,13 +143,19 @@
               </i>
             </td>
 
+
             <td
               class="collapsing">
               <span ng-if="user.profile.leader">
                 <i
-                  class="green money icon">
+                  class="green check circle icon">
                 </i>
               </span>
+            </td>
+
+            <td
+              class="collapsing">
+              {{user.teamCode}}
             </td>
 
             <td

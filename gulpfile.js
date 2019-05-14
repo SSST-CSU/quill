@@ -9,7 +9,7 @@ var cleanCss = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
+var terser = require('gulp-terser');
 var ngAnnotate = require('gulp-ng-annotate');
 
 var environment = process.env.NODE_ENV;
@@ -34,7 +34,8 @@ gulp.task('js', function () {
   });
 
   // transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)
-  b.bundle()
+  if (environment == 'dev') {
+    b.bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -42,6 +43,16 @@ gulp.task('js', function () {
     .on('error', swallowError)
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('app/client/build'));
+  } else {
+    b.bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(ngAnnotate())
+    .pipe(terser({ mangle: false }))
+    .on('error', swallowError)
+    .pipe(gulp.dest('app/client/build'));
+  }
+  
 });
 
 gulp.task('sass', function() {

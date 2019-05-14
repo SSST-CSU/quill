@@ -220,7 +220,7 @@ angular.module('reg')
 
       function formatTime(time){
         if (time) {
-          return moment(time).format('MMMM Do YYYY, h:mm:ss a');
+          return moment(time).format('YYYY-MM-DD HH:mm:ss');
         }
       }
 
@@ -258,9 +258,6 @@ angular.module('reg')
                 name: 'Confirm By',
                 value: formatTime(user.status.confirmBy) || 'N/A'
               },{
-                name: 'Checked In',
-                value: formatTime(user.status.checkInTime) || 'N/A'
-              },{
                 name: 'Email',
                 value: user.email
               },{
@@ -272,108 +269,50 @@ angular.module('reg')
             name: 'Profile',
             fields: [
               {
-                name: 'Name',
+                name: '姓名',
                 value: user.profile.name
               },{
-                name: 'Gender',
+                name: '性别',
                 value: user.profile.gender
               },{
-                name: 'School',
+                name: '学院',
                 value: user.profile.school
               },{
-                name: 'Graduation Year',
-                value: user.profile.graduationYear
+                name: '专业班级',
+                value: user.profile.class
               },{
-                name: 'Description',
-                value: user.profile.description
+                name: '学号',
+                value: user.profile.student
               },{
-                name: 'Essay',
-                value: user.profile.essay
-              }
-            ]
-          },{
-            name: 'Confirmation',
-            fields: [
-              {
-                name: 'Phone Number',
-                value: user.confirmation.phoneNumber
+                name: 'QQ 号',
+                value: user.profile.qq
               },{
-                name: 'Dietary Restrictions',
-                value: user.confirmation.dietaryRestrictions.join(', ')
+                name: '手机号',
+                value: user.profile.phone
               },{
-                name: 'Shirt Size',
-                value: user.confirmation.shirtSize
+                name: '加分课程',
+                value: user.profile.course
               },{
-                name: 'Major',
-                value: user.confirmation.major
+                name: '是队长',
+                value: user.profile.leader
               },{
-                name: 'Github',
-                value: user.confirmation.github
+                name: 'Botzone 账号',
+                value: user.profile.botzone
               },{
-                name: 'Website',
-                value: user.confirmation.website
+                name: '有指导教师',
+                value: user.profile.haveTeacher
               },{
-                name: 'Needs Hardware',
-                value: user.confirmation.wantsHardware,
-                type: 'boolean'
+                name: '指导教师姓名',
+                value: user.profile.teacherName
               },{
-                name: 'Hardware Requested',
-                value: user.confirmation.hardware
-              }
-            ]
-          },{
-            name: 'Hosting',
-            fields: [
-              {
-                name: 'Needs Hosting Friday',
-                value: user.confirmation.hostNeededFri,
-                type: 'boolean'
+                name: '指导教师所在专业',
+                value: user.profile.teacherMajor
               },{
-                name: 'Needs Hosting Saturday',
-                value: user.confirmation.hostNeededSat,
-                type: 'boolean'
+                name: '指导教师 Email',
+                value: user.profile.teacherEmail
               },{
-                name: 'Gender Neutral',
-                value: user.confirmation.genderNeutral,
-                type: 'boolean'
-              },{
-                name: 'Cat Friendly',
-                value: user.confirmation.catFriendly,
-                type: 'boolean'
-              },{
-                name: 'Smoking Friendly',
-                value: user.confirmation.smokingFriendly,
-                type: 'boolean'
-              },{
-                name: 'Hosting Notes',
-                value: user.confirmation.hostNotes
-              }
-            ]
-          },{
-            name: 'Travel',
-            fields: [
-              {
-                name: 'Needs Reimbursement',
-                value: user.confirmation.needsReimbursement,
-                type: 'boolean'
-              },{
-                name: 'Received Reimbursement',
-                value: user.confirmation.needsReimbursement && user.status.reimbursementGiven
-              },{
-                name: 'Address',
-                value: user.confirmation.address ? [
-                  user.confirmation.address.line1,
-                  user.confirmation.address.line2,
-                  user.confirmation.address.city,
-                  ',',
-                  user.confirmation.address.state,
-                  user.confirmation.address.zip,
-                  ',',
-                  user.confirmation.address.country,
-                ].join(' ') : ''
-              },{
-                name: 'Additional Notes',
-                value: user.confirmation.notes
+                name: '指导教师手机号',
+                value: user.profile.teacherPhone
               }
             ]
           }

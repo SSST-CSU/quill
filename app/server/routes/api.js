@@ -72,6 +72,7 @@ module.exports = function(router) {
     return function(err, data){
       if (err){
         // SLACK ALERT!
+        /*
         if (process.env.NODE_ENV === 'production'){
           request
             .post(process.env.SLACK_HOOK,
@@ -97,10 +98,14 @@ module.exports = function(router) {
                   message: "Your error has been recorded, we'll get right on it!"
                 });
               }
-            );
+            );  
         } else {
           return res.status(500).send(err);
         }
+        */
+        return res.status(500).send({
+          message: "出现了一个错误，我们已经记录下来了。"
+        });
       } else {
         return res.json(data);
       }
